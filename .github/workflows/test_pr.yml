@@ -23,6 +23,8 @@ jobs:
           git push origin ${{ steps.branchname.outputs.branchname }}
           PR_NUMBER=$(gh pr create -B main -t 'Update schema $(date +'%Y%m%d%H%M%S')' -b '' -H ${{ steps.branchname.outputs.branchname }} | awk -F '/' '{ print $7 }')
           gh pr merge -m --auto $PR_NUMBER
+        env:
+          GH_TOKEN: ${{ github.token }}
 
 
 
